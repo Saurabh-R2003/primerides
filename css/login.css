@@ -1,0 +1,219 @@
+
+.form-container {
+    position:absolute;
+    width: 400px;
+    border-radius: 0.75rem;
+    background-color: #ececec;
+    box-shadow:0px 0px 12px #000000;
+    padding: 1.8rem;
+    color: rgb(0, 0, 0);
+    /* font-family: Supreme Variable; */
+    font-family: lemon milk;
+}
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #000;
+}
+.close-button:hover {
+    color: rgb(31, 31, 31);
+}
+.form-container {
+    position: relative; /* Add this to position the close button */
+}
+.logintitle {
+    text-align: center;
+    font-size: 2rem;
+    line-height: 1rem;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+.form {
+    margin-top: 1.5rem;
+}
+
+.input-group {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    border-radius:10px;
+}
+
+.input-group label {
+    display: block;
+    color: rgb(0, 0, 0);
+    font-size: medium;
+    margin-bottom: 8px;
+    margin-top: 0.8rem;
+}
+
+.input-group input {
+    width: 100%;
+    border-radius: 10px !important;
+    border: 1px solid rgb(222, 222, 222);
+    outline: 0;
+    background-color: rgb(214, 214, 214);
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+    padding: 0.75rem 1rem;
+    color: rgb(0, 0, 0);
+    margin-bottom: 1rem;
+    font-family: supreme variable;
+    font-size: 18px;
+}
+
+.input-group input:focus {
+    border-color: rgb(0, 0, 0);
+    /* border-radius: 10px; */
+}
+
+.forgot {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: rgb(0, 0, 0);
+    margin: 8px 0 14px 0;
+}
+
+.forgot a,
+.signup a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 13px;
+   
+}
+
+.forgot a:hover,
+.signup a:hover {
+    text-decoration: underline rgb(72, 72, 72);
+}
+
+.sign {
+    display: block;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    padding: 0.75rem;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: 0.25s;
+}
+.sign:hover{
+    /* transform: scale(1.01); */
+    /* border: 1px solid rgb(222, 222, 222); */
+    box-shadow: 3px 3px 12px #000000;
+}
+
+.social-message {
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+    
+}
+
+.uline {
+    height: 1px;
+    flex: 1 1 0%;
+    background-color: rgba(55, 65, 81, 1);
+}
+
+.social-message .message {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    font-size: 0.8rem;
+    line-height: 2rem;
+    color: rgb(0, 0, 0);
+    margin-bottom: 0rem;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.social-icons .icon {
+    border-radius: 0.125rem;
+    height: 3.5rem;
+    width: 3.5rem;
+    padding: 0.75rem;
+    border: none;
+    background-color: transparent;
+    /* margin-left: 8px; */
+    border-radius: 50%;
+    font-size:0px;
+ transition: 0.25s;
+    
+}
+
+.social-icons .icon svg {
+    height: 3.5rem;
+    width: 3.5rem;
+    fill: #000000;
+}
+
+.social-icons .icon:hover {
+    background:rgba(0, 0, 0, 0.094);
+    border-radius: 50%;
+  
+}
+ .social-icons .icon:hover svg{
+    fill:whitesmoke;
+   
+} 
+
+.signup {
+    text-align: center;
+    font-size: 0.8rem;
+    line-height: 0rem;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+
+}
+
+/* Add these styles to your login.css */
+
+.modal3 {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content3{
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+} 
+
+

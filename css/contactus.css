@@ -1,0 +1,16 @@
+*{
+    margin: 0px;    
+    padding: 0px;
+}
+.head{
+    position: fixed !important;
+}
+.spline-bot{
+    margin-top: 100px;
+}
+.footer{
+    position: fixed !important;
+    top:780px;
+    z-index: 1000 !important;
+    margin-top: -100px !important;
+}

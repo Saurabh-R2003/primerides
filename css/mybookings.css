@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0e0e0;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.coverinside {
+    max-width: 1050px; 
+    width: 100%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    
+}
+
+h1 {
+    text-align: left;
+    color: #333;
+    margin-bottom: 20px;
+    
+}
+
+.booking {
+    
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f0f0f0;
+    margin-bottom: 20px;
+    padding: 10px 30px 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.car-photo {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.details {
+    flex: 1;
+    text-align: left;
+}
+
+.details h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+}
+
+.details p {
+    margin: 5px 0 60px;
+    color: #666;
+}
+
+.status {
+    padding-bottom: 40px;
+    text-align: right;
+}
+
+.confirmed {
+    display: inline-block;
+    background: #e0e0e0;
+    color: green;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+}
+
+.price {
+    margin-top: 5px;
+    padding-right: 65px;
+    display: block;
+    font-size: 20px;
+    color: green;
+}
+
+@media (max-width: 600px) {
+    .booking {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .car-photo {
+        margin-bottom: 10px;
+    }
+    .status {
+        text-align: left;
+    }
+}

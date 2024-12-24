@@ -1,0 +1,392 @@
+
+<?php
+include("includes/header.php");
+?>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <link rel="stylesheet" href="css/cardetails.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/header.css">
+  <meta charset="utf-8">
+  <title>Data</title>
+</head>
+<body>
+<?php
+$conn = mysqli_connect("localhost", "root","", "primerides");
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$carid =2; 
+
+$q = "SELECT * FROM `car-details` WHERE carid=$carid";
+$result = mysqli_query($conn, $q);
+
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+
+    $carname = htmlentities($row["carname"]);
+    $cartag = htmlentities($row["tag"]);
+    $price = htmlentities($row["price"]);
+    $features = htmlentities($row["features"]);
+    $des = htmlentities($row["description"]);
+
+    $img1 = htmlentities($row["img1"]);
+    $imgPath1 = "admin/uploads/" . $img1;
+
+    $img2 = htmlentities($row["img2"]);
+    $imgPath2 = "admin/uploads/" . $img2;
+
+    $img3 = htmlentities($row["img3"]);
+    $imgPath3 = "admin/uploads/" . $img3;
+} else {
+    echo "No data found for carid=$carid";
+}
+
+mysqli_close($conn);
+
+?>
+
+<div class="upper">
+  <div class="car-images">
+  <div class="car-bg">
+      <img id="mainImage" src="<?php echo $imgPath1;?>" width="800" height="460">
+    </div>
+    <div class="side-img">
+      <div class="radio-wrapper">
+        <input type="radio" id="radio1" name="sideimg" value="<?php echo $imgPath1; ?>" checked>
+        <label for="radio1">
+          <img src="<?php echo $imgPath1; ?>" alt="Car 1">
+        </label>
+      </div>
+
+      <div class="radio-wrapper">
+        <input type="radio" id="radio2" name="sideimg" value="<?php echo $imgPath2; ?>">
+        <label for="radio2">
+          <img src="<?php echo $imgPath2; ?>" alt="Car 2">
+        </label>
+      </div>
+
+      <div class="radio-wrapper">
+        <input type="radio" id="radio3" name="sideimg" value="<?php echo $imgPath3; ?>">
+        <label for="radio3">
+          <img src="<?php echo $imgPath3; ?>" alt="Car 3">
+        </label>
+      </div>
+    </div>
+   
+  </div>
+  <div class="info">
+  
+    <div class="tag"><?php echo $cartag?></div>
+    <div class="carname" id="carname"><?php echo $carname?></div>
+    <div class="price"><h5>Available for rent at</h5> <h3>$<?php echo $price?></h3> <p>/Per day</p></div>
+    <div class="rentnow"><a href="#radio3"><button>RENT</button></a></div>
+   <div class="color">
+   <h2>Exterior color</h2>
+    <div class="color-picker">
+        <label class="color-option" title="Yellow">
+            <input type="radio" name="color" value="yellow">
+            <span class="color-swatch" style="background-color:#FECA25; border: 1px solid #FECA25;"></span>
+        </label>
+        <label class="color-option" title="Blue">
+            <input type="radio" name="color" value="blue">
+            <span class="color-swatch" style="background-color:rgb(0, 43, 170);border: 1px solid #0012d7;"></span>
+        </label>
+        <label class="color-option" title="Grey">
+            <input type="radio" name="color" value="grey">
+            <span class="color-swatch" style="background-color: grey;border: 1px solid  #a1a1a1;"></span>
+        </label>
+        <label class="color-option" title="white">
+            <input type="radio" name="color" value="white">
+            <span class="color-swatch" style="background-color: white;border: 1px solid #dedede;"></span>
+        </label>
+        <label class="color-option" title="Black">
+            <input type="radio" name="color" value="black">
+            <span class="color-swatch" style="background-color: black;border: 1px solid #070707"></span>
+        </label>
+    </div>
+</div>
+  </div>
+</div>
+<div class="logos" id="logos">
+    <div class="logo-slide">
+      <h1></h1>
+    </div>
+    <div class="logo-slide">
+    <h1><?php echo $carname?></h1>
+    </div>
+    <div class="logo-slide">
+    <h1><?php echo $carname?></h1>
+    </div>
+    <div class="logo-slide">
+    <h1><?php echo $carname?></h1>
+    </div>
+    <div class="logo-slide">
+    <h1><?php echo $carname?></h1>
+    </div>
+    <div class="logo-slide">
+    <h1><?php echo $carname?></h1>
+    </div>
+    <div class="logo-slide">
+    <h1><?php echo $carname?></h1>
+    </div>
+    </div>
+<div class="lower" id="lower">
+<div class="moreinfo">
+<div class="features">
+<h1>Features</h1>
+<p><?php echo $features;?></p>
+</div>
+<div class="des">
+<h1>About - <?php echo $carname?></h1>
+<p><?php echo $des;?></p>
+</div>
+</div>
+<div class="book" id="book">
+  <div class="strip">
+    <h3>RENT VEHICLE</h3>
+    </div>
+    <form method="POST" action="">
+        <label for="from_date">From Date</label>
+        <input type="date" id="from_date" name="from_date" required>
+
+        <label for="to_date">To Date</label>
+        <input type="date" id="to_date" name="to_date" required>
+
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+
+        <button type="submit">BOOK NOW</button>
+    </form>
+
+</div>
+</div>
+
+<!-- Modal Dialog -->
+<div id="myModal" class="modal">
+  <!-- <span class="close">&times;</span> -->
+  <img class="modal-content" id="imgmain">
+</div>
+
+
+<script>
+  
+  document.querySelectorAll('input[name="sideimg"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      document.getElementById('mainImage').src = this.value;
+    });
+  });
+
+ 
+  var modal = document.getElementById("myModal");
+
+ 
+  var img = document.getElementById("mainImage");
+  var modalImg = document.getElementById("imgmain");
+
+  img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+  }
+//  var span = document.getElementsByClassName("close")[0];
+//   span.onclick = function() {
+//     modal.style.display = "none";
+//   }
+
+  window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        }
+  
+</script>
+
+<?php include("includes/footer.php"); ?>
+
+</body>
+</html>
+
+
+<!-------------------------------------------upload-------------------------------------------->
+
+
+<?php
+session_start();
+
+if (isset($_POST["submit"])) {
+    // Retrieve form data and sanitize
+    $carid = htmlspecialchars($_POST["carid"]);
+    $carname = htmlspecialchars($_POST["carname"]);
+    $type = htmlspecialchars($_POST["typeofcar"]);
+    $price = htmlspecialchars($_POST["price"]);
+    $features = htmlspecialchars($_POST["features"]);
+    $des = htmlspecialchars($_POST["des"]);
+
+    // Array to hold file information
+    $file_fields = ['img1', 'img2', 'img3'];
+    $uploaded_files = [];
+
+    // Allowed file types
+    $allowed = ['jpg', 'jpeg', 'png'];
+
+    foreach ($file_fields as $file_field) {
+        if (isset($_FILES[$file_field])) {
+            $img_name = $_FILES[$file_field]["name"];
+            $img_tmpname = $_FILES[$file_field]["tmp_name"];
+            $img_error = $_FILES[$file_field]["error"];
+            $fileext = explode('.', $img_name);
+            $fileactualext = strtolower(end($fileext));
+            
+
+            if (in_array($fileactualext, $allowed)) {
+                if ($img_error == 0) {
+                    $filenewname = uniqid('', true) . "." . $fileactualext;
+                    $filedes = "uploads/" . $filenewname;
+                    if (!is_dir('uploads')) {
+                        mkdir('uploads', 0777, true);
+                    }
+                    if (move_uploaded_file($img_tmpname, $filedes)) {
+                        $uploaded_files[$file_field] = $filenewname;
+                    } else {
+                        $_SESSION['message'] = "Failed to upload {$file_field}!";
+                    }
+                } else {
+                    $_SESSION['message'] = "There was an error uploading {$file_field}!";
+                }
+            } else {
+                $_SESSION['message'] = "You cannot upload this type of file ({$file_field})!";
+            }
+        }
+    }
+
+    if (count($uploaded_files) == count($file_fields)) {
+        // Connect to the database using prepared statements
+        $conn = new mysqli("localhost", "root", "", "primerides");
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Prepare SQL query
+        $stmt = $conn->prepare("INSERT INTO `car-details` (carid, carname, tag, price, features, description, img1, img2, img3) 
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssss", $carid, $carname, $type, $price, $features, $des, $uploaded_files['img1'], $uploaded_files['img2'], $uploaded_files['img3']);
+
+        if ($stmt->execute()) {
+            $_SESSION['message'] = "Successfully added!";
+        } else {
+            $_SESSION['message'] = "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+        $conn->close();
+
+        // Redirect to the same page to prevent form resubmission
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    } else {
+        $_SESSION['message'] = "Failed to upload all images.";
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Car Details</title>
+</head>
+<body>
+    <?php
+    if (isset($_SESSION['message'])) {
+        // echo "<p>" . $_SESSION['message'] . "</p>";
+        echo "<script>alert('" . $_SESSION['message'] . "');</script>";
+        unset($_SESSION['message']);
+    }
+    ?>
+    <form action="upload.php" method="post" id="form" enctype="multipart/form-data">
+        <label>Car id (numbers):</label>
+        <input type="text" name="carid" id="carid"><br><br>
+
+        <label>Car Name:</label>
+        <input type="text" name="carname" id="carname"><br><br>
+
+        <label for="cars">Choose a car type:</label>
+        <select name="typeofcar" id="typeofcar">
+            <option value="Sports">Sports</option>
+            <option value="Sedan">Sedan</option>
+            <option value="SUV">SUV</option>
+        </select><br><br>
+
+        <label>Price (per day):</label>
+        <input type="text" name="price" id="price"><br><br>
+
+        <label>Features:</label>
+        <input type="text" name="features" id="features"><br><br>
+
+        <label>Description:</label>
+        <input type="text" name="des" id="des"><br><br>
+<!-- <div class="images"> -->
+        <h3>Image 1</h3>
+        <label class="custum-file-upload" for="img1" >
+        <div class="icon" id="uploadimg1">
+         <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24" ><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path fill="" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" clip-rule="evenodd" fill-rule="evenodd"></path> </g></svg>
+         <span class="text">Click to upload image</span>
+        </div>
+        <!-- <input type="file" id="file"> -->
+        <input type="file" name="img1" id="img1" onchange="previewImage(event, 'preview1','uploadimg1')"><br><br>
+        <img id="preview1" class="preview" style="display:none;"><br><br>
+        </label>
+
+        
+        <h3>Image 2</h3>
+        <label class="custum-file-upload" for="img2" >
+        <div class="icon" id="uploadimg2">
+         <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24" ><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path fill="" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" clip-rule="evenodd" fill-rule="evenodd"></path> </g></svg>
+         <span class="text">Click to upload image</span>
+        </div>
+        <!-- <input type="file" id="file"> -->
+        <input type="file" name="img2" id="img2" onchange="previewImage(event, 'preview2','uploadimg2')"><br><br>
+        <img id="preview2" class="preview" style="display:none;"><br><br>
+        </label>
+
+        
+        <h3>Image 3</h3>
+        <label class="custum-file-upload" for="img3" >
+        <div class="icon" id="uploadimg3">
+         <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24" ><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path fill="" d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z" clip-rule="evenodd" fill-rule="evenodd"></path> </g></svg>
+         <span class="text">Click to upload image</span>
+        </div>
+        <!-- <input type="file" id="file"> -->
+        <input type="file" name="img3" id="img3" onchange="previewImage(event, 'preview3','uploadimg3')"><br><br>
+        <img id="preview3" class="preview" style="display:none;"><br><br>
+        </label>
+        </div>
+       
+        <br><br>
+        <input type="submit" name="submit" value="Upload">
+    </form>
+
+    <script>
+        function previewImage(event, previewId,uploadimgId) {
+            const reader = new FileReader();
+            
+            reader.onload = function(){
+                const output = document.getElementById(previewId);
+                const uploadimgID=document.getElementById(uploadimgId);
+                output.src = reader.result;
+                output.style.display = 'block';
+                output.style.backgroundsize = 'cover';
+                uploadimgID.style.display="none";
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</body>
+</html>
