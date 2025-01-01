@@ -3,8 +3,8 @@ session_start();
 require_once 'vendor/autoload.php';
 
 // Init configuration
-$clientID = '329190451130-6l11d1nltgja9ri5dtbd1oap8nfqdg69.apps.googleusercontent.com';
-$clientSecret = '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';
+$clientID =  getenv('GOOGLE_CLIENT_ID');
+$clientSecret =  getenv('GOOGLE_CLIENT_SECRET');
 $redirectUri = 'http://localhost/primerides/login.php'; // Ensure this matches your Google OAuth settings
 
 // Create Client Request to access Google API
